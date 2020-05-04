@@ -12,7 +12,8 @@ public class CopyFileBuffers {
       long start = System.nanoTime();
       try (FileChannel fcIn = new FileInputStream("data.dat").getChannel();
            FileChannel fcOut = new FileOutputStream("output.dat").getChannel()) {
-        ByteBuffer buf = ByteBuffer.allocate(1024 * 1024);
+//        ByteBuffer buf = ByteBuffer.allocate(1024 * 1024);
+        ByteBuffer buf = ByteBuffer.allocateDirect(1024 * 1024);
         int count;
         while ((count = fcIn.read(buf)) >= 0) {
           buf.flip();
